@@ -186,6 +186,8 @@ public class Main {
         ));
 
 
+
+
         //coba texture
 //        objects.add(new ObjLoader(
 //                Arrays.asList(
@@ -206,6 +208,9 @@ public class Main {
             camera.addRotation(0, (float) Math.toRadians(0.95));
         }
     }
+
+
+
 
 
     public void input(){
@@ -297,6 +302,19 @@ public class Main {
             }
             for(Object p : person){
                 p.draw(camera,projection);
+            }
+
+            for (Object object : person) {
+                Vector3f mainbody = new Vector3f(person.get(0).model.transformPosition(new Vector3f(0.0f,0.0f,0.0f)));
+
+                Vector3f objPos = new Vector3f(object.getCenterPoint().get(0), object.getCenterPoint().get(1), object.getCenterPoint().get(2));
+                float distance = (float) Math.sqrt(Math.pow(objPos.x - mainbody.x, 2) + Math.pow(objPos.z - mainbody.z, 2));
+
+                if (distance < 4.25f) {
+                    System.out.println("nabrak");
+//                System.out.println(objPos + " = " + distance);
+                }
+//            System.out.println(objPos + " = " + distance);
             }
 //            rotateObj();
             glDisableVertexAttribArray(0);
